@@ -1,3 +1,4 @@
 # train-ticket-server
 
-a [Sails](http://sailsjs.org) application
+This is a project developed in the Mobile Computing @ FEUP
+
