@@ -32,10 +32,11 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'POST /usr': 'UserController.index',
-  'GET  /usr': 'UserController.list',
-  'POST /login': 'UserController.login',
-  'POST /isLogged': 'UserController.isLogged'
+  'POST /usr'     : 'UserController.index',
+  'GET  /usr'     : 'UserController.list',
+  'POST /login'   : 'UserController.login',
+  'POST /isLogged': 'UserController.isLogged',
+  'GET  /railway' : 'RailwayController.index'
 
   /***************************************************************************
   *                                                                          *

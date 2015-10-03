@@ -1,0 +1,23 @@
+stations:
+    - "Station A"
+    - "Station B"
+    - "Station C"
+connections:
+    a_b :
+        length: 10
+        dStation: "Station B"
+        aStation: "Station A"
+        schedule:
+            - "18:00"
+            - "19:00"
+            - "20:00"
+            - "21:00"
+    b_a :
+        length: 10
+        dStation: "Station B"
+        aStation: "Station A"
+        schedule:
+            - "18:00"
+            - "19:00"
+            - "20:00"
+            - "21:00"
