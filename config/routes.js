@@ -36,7 +36,9 @@ module.exports.routes = {
   'GET  /usr'     : 'UserController.list',
   'POST /login'   : 'UserController.login',
   'POST /isLogged': 'UserController.isLogged',
-  'GET  /railway' : 'RailwayController.index'
+  'GET  /railway' : 'RailwayController.index',
+
+  'GET /hello'    : function(req,res){ return res.json({'guess what': 'it works'})}
 
   /***************************************************************************
   *                                                                          *
