@@ -9,17 +9,10 @@ module.exports = {
 
   attributes: {
     name: {
-      type: 'string',
-      required: true,
-      unique: true
-    },
-    username : {
-      type: 'string',
-      required: true
+      type: 'string'
     },
     email : {
-      type: 'email',
-      required: true,
+      type: 'string',
       unique: true
     },
     password : {
@@ -27,16 +20,13 @@ module.exports = {
       required: true
     },
     cardType : {
-      type: 'string',
-      required: true
+      type: 'string'
     },
     cardNumber: {
-      type: 'string',
-      required: true
+      type: 'string'
     },
     cardExpiration : {
-      type: 'string',
-      required: true
+      type: 'string'
     }
   }
 };
