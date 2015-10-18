@@ -7,55 +7,71 @@
 var debug = require('debug')('TrainTicket-UserController.js');
 module.exports = {
 
-  create : function(req,res){
-    debug('Creating Model');
-    if(!req.body.email) return res.badRequest("Email not found");
+    create : function(req,res){
+        debug('Creating Model');
+        if(!req.body.email) return res.badRequest("Email not found");
 
-    sails.models.user.findOrCreate({email: req.email}, req.allParams())
-      .then(function(user){
-        delete user.password;
-        user.token = req.sessionID;
-        return res.ok(user);
-      })
-      .catch(function(err){
-        sails.log.error(err);
-        return res.badRequest(err);
-      })
-  },
+        sails.models.user.findOne({email: req.email})
+            .then(function(user){
+                if(user){
+                    return res.badRequest('user already exists');
+                }
+                var newUser = req.allParams();
+                newUser.token = sails.services.token.generate(newUser);
+                return sails.models.user.create(newUser);
+            })
+            .then(function(user){
+                delete user.password;
+                return res.ok(user);
+            }).catch(function(err){
+                sails.log.error(err);
+                return res.badRequest(err);
+            });
+        /*
 
-  login : function(req,res){
-    debug('Login Action');
-    sails.models.user.findOne(req.body)
-      .then(function(user) {
-        if(!user){
-          return res.badRequest("No user found. Please verify your credentials.");
+         sails.models.user.findOrCreate({email: req.email}, req.allParams())
+         .then(function(user){
+         delete user.password;
+         user.token = req.sessionID;
+         return res.ok(user);
+         })
+         .catch(function(err){
+         sails.log.error(err);
+         return res.badRequest(err);
+         })*/
+    },
+
+    login : function(req,res){
+        debug('Login Action');
+        sails.models.user.findOne(req.body)
+            .then(function(user) {
+                if(!user){
+                    return res.badRequest("No user found. Please verify your credentials.");
+                }
+                user.token = sails.services.token.generate(user);
+                return sails.models.user.update({id : user.id},user);
+            })
+            .then(function(user){
+                return res.ok(user);
+            })
+            .catch(function(err){
+                return res.badRequest(err);
+            })
+    },
+
+    isLogged : function(req,res){
+        if (req.session.user ){
+            res.ok(req.session);
+        } else {
+            return res.badRequest(false);
         }
-        else{
-          delete user.password;
-          user.token = req.sessionID;
-          req.session.user = user;
-          req.session.authenticated = true;
-          return res.ok(user);
-        }
-      })
-      .catch(function(err){
-        return res.badRequest(err);
-      })
-  },
+    },
 
-  isLogged : function(req,res){
-    if (req.session.user ){
-      res.ok(req.session);
-    } else {
-      return res.badRequest(false);
+    list : function(req,res){
+        sails.models.user.find(function(err,users){
+            res.ok(users);
+        })
     }
-  },
-
-  list : function(req,res){
-    sails.models.user.find(function(err,users){
-      res.ok(users);
-    })
-  }
 
 
 };

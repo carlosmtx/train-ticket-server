@@ -27,6 +27,9 @@ module.exports = {
     },
     cardExpiration : {
       type: 'string'
+    },
+    token: {
+      type: 'string'
     }
   }
 };

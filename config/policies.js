@@ -29,8 +29,8 @@ module.exports.policies = {
   // '*': true,
 
   UserController : {
-    isLogged: 'sessionAuth',
-    list : 'sessionAuth'
+    list : 'tokenAuth',
+    isLogged: 'tokenAuth'
   }
 
   /***************************************************************************
