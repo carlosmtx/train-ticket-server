@@ -52,7 +52,7 @@ module.exports = {
                 return sails.models.user.update({id : user.id},user);
             })
             .then(function(user){
-                return res.ok(user);
+                return res.ok(user[0]);
             })
             .catch(function(err){
                 return res.badRequest(err);
