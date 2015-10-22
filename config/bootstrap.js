@@ -17,5 +17,6 @@ module.exports.bootstrap = function(cb) {
     })
     .catch(function(err){
       sails.log.error(err);
+      cb();
     })
 };
