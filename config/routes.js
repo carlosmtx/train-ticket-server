@@ -32,11 +32,16 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'POST /usr'     : 'UserController.create',
-  'GET  /usr'     : 'UserController.list',
-  'POST /login'   : 'UserController.login',
-  'GET  /session' : 'UserController.isLogged',
-  'GET  /railway' : 'RailwayController.index',
+  'POST /usr'         : 'UserController.create', // username, email, password (, cardNumber, cardType, cardExpiration)
+  'GET  /usr'         : 'UserController.list',
+  'POST /login'       : 'UserController.login', // email, password
+  'GET  /session'     : 'UserController.isLogged',
+  'GET  /railway'     : 'RailwayController.index',
+  'POST /usr/tickets' : 'UserController.tickets', // token
+
+  'POST /purchase'    : 'PurchaseController.purchase', // start, end, token
+  'GET  /purchase/:id': 'PurchaseController.info',
+
 
   'GET /hello'    : function(req,res){ return res.json({'guess what': 'it works'})}
 

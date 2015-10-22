@@ -10,6 +10,7 @@ module.exports = function(req, res, next) {
         token: token
     }).then(function(user){
         if(user && sails.services.token.isValid(user,token)){
+            req.user = user;
             return next();
         } else {
             return res.forbidden('You are not permitted to perform this action.');

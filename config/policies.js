@@ -30,7 +30,13 @@ module.exports.policies = {
 
   UserController : {
     list : 'tokenAuth',
-    isLogged: 'tokenAuth'
+    isLogged: 'tokenAuth',
+    tickets: 'tokenAuth'
+
+  },
+
+  PurchaseController: {
+    purchase: 'tokenAuth'
   }
 
   /***************************************************************************

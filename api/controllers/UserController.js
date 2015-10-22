@@ -71,8 +71,16 @@ module.exports = {
         sails.models.user.find(function(err,users){
             res.ok(users);
         })
+    },
+
+    tickets: function(req,res){
+      Purchase.find({ user: req.user.id})
+        .then(function(tickets){
+          return res.ok(tickets);
+        })
+        .catch(function(err){
+          return res.serverError(err);
+        })
     }
-
-
 };
 
