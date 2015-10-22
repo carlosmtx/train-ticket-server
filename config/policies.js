@@ -35,8 +35,9 @@ module.exports.policies = {
 
   },
 
-  PurchaseController: {
-    purchase: 'tokenAuth'
+  TicketController: {
+    purchase: 'tokenAuth',
+    validate: 'inspectorAuth'
   }
 
   /***************************************************************************

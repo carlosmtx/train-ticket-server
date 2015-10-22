@@ -1,5 +1,5 @@
 /**
- * Purchase.js
+ * Ticket.js
  *
  * @description :: Stores ticket purchases of all users.
  * @docs        :: http://sailsjs.org/#!documentation/models
@@ -30,6 +30,10 @@ module.exports = {
 
     price: {
       type: 'float'
+    },
+
+    train: {
+      type: 'integer'
     }
   }
 };

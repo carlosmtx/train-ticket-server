@@ -1,18 +1,19 @@
 /**
- * PurchaseController
+ * TicketController
  *
  * @description :: Server-side logic for managing Purchases
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 module.exports = {
   purchase: function(req,res){
-    Purchase.create(
+    Ticket.create(
       {
         start: req.body.start,
         end: req.body.end,
         user: req.user.id,
         price: 15, //TODO: vai ser calculada no serviço
-        validated: "false"
+        validated: false,
+        train: 1 //TODO: um comboio por hora e este número vai identificar o comboio. a receber do serviço
       }
     )
       .then(function(ticket){
@@ -24,11 +25,28 @@ module.exports = {
   },
 
   info: function(req,res){
-    Purchase.findOne(req.params.id)
+    if(!req.body.id) return res.badRequest("Ticket does not exist.");
+
+    Ticket.findOne(req.body.id)
       .populate("user")
       .then(function(ticket){
         if(!ticket) return res.badRequest("Ticket does not exist.");
         else return res.ok(ticket);
+      })
+      .catch(function(err){
+        return res.serverError(err);
+      })
+  },
+
+  validate: function(req,res){
+    Ticket.findOne(req.body.id)
+      .then(function(ticket){
+        if(!ticket) return res.badRequest("Ticket does not exist.");
+        ticket.validated = true;
+        ticket.save(function(err,newTicket){
+          if(err) return res.serverError(err);
+          return res.ok(newTicket);
+        })
       })
       .catch(function(err){
         return res.serverError(err);

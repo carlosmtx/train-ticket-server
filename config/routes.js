@@ -36,12 +36,15 @@ module.exports.routes = {
   'GET  /usr'         : 'UserController.list',
   'POST /login'       : 'UserController.login', // email, password
   'GET  /session'     : 'UserController.isLogged',
-  'GET  /railway'     : 'RailwayController.index',
   'POST /usr/tickets' : 'UserController.tickets', // token
 
-  'POST /purchase'    : 'PurchaseController.purchase', // start, end, token
-  'GET  /purchase/:id': 'PurchaseController.info',
+  'POST /inspector/login' : 'Inspector.login', // email, password
 
+  'POST /ticket/purchase' : 'TicketController.purchase', // start, end, token
+  'POST /ticket/validate' : 'TicketController.validate', // token, id (do ticket)
+  //'GET  /ticket/:id'    : 'TicketController.info', // token
+
+  'GET  /railway'     : 'RailwayController.index',
 
   'GET /hello'    : function(req,res){ return res.json({'guess what': 'it works'})}
 

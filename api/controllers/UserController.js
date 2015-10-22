@@ -74,13 +74,31 @@ module.exports = {
     },
 
     tickets: function(req,res){
-      Purchase.find({ user: req.user.id})
-        .then(function(tickets){
-          return res.ok(tickets);
-        })
-        .catch(function(err){
-          return res.serverError(err);
-        })
+      async.parallel({
+          active: function(cb){
+            Ticket.find({ user: req.user.id, validated: false})
+              .then(function(tickets){
+                cb(null,tickets);
+              })
+              .catch(function(err){
+                cb(err,null);
+              })
+          },
+          used: function(cb){
+            Ticket.find({ user: req.user.id, validated: true})
+              .then(function(tickets){
+                cb(null,tickets);
+              })
+              .catch(function(err){
+                cb(err,null);
+              })
+          }
+        },
+        function(err,results){
+          if(err) return res.serverError(err);
+          else return res.ok(results);
+        });
+
     }
 };
 

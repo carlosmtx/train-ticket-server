@@ -11,7 +11,11 @@
 
 module.exports.bootstrap = function(cb) {
 
-  // It's very important to trigger this callback method when you are finished
-  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  cb();
+  sails.models.inspector.findOrCreate({ name: "Leonel Araújo", email:"lra@train.com", password:"123"})
+    .then(function(insp){
+      if(insp) cb();
+    })
+    .catch(function(err){
+      sails.log.error(err);
+    })
 };
