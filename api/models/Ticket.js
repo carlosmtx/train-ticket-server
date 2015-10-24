@@ -9,11 +9,11 @@ module.exports = {
 
   attributes: {
     // Start and End Stations
-    start: {
+    departure: {
       type: 'string',
       required: 'true'
     },
-    end : {
+    arrival : {
       type: 'string',
       required: 'true'
     },
@@ -32,8 +32,8 @@ module.exports = {
       type: 'float'
     },
 
-    train: {
-      type: 'integer'
+    departureTime: {
+      type: 'datetime'
     }
   }
 };

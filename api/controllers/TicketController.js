@@ -8,12 +8,12 @@ module.exports = {
   purchase: function(req,res){
     Ticket.create(
       {
-        start: req.body.start,
-        end: req.body.end,
+        departure: req.body.departure,
+        arrival: req.body.arrival,
         user: req.user.id,
-        price: 15, //TODO: vai ser calculada no serviço
+        price: 15.50, //TODO: vai ser calculada no serviço através do length (?)
         validated: false,
-        train: 1 //TODO: um comboio por hora e este número vai identificar o comboio. a receber do serviço
+        departureTime: 1 //TODO: um comboio por hora e este número vai identificar o comboio. a receber do serviço
       }
     )
       .then(function(ticket){
