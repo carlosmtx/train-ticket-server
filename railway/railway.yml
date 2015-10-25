@@ -5,11 +5,11 @@ stations:
 connections:
     a_b :
         length: 10
-        dStation: "Station B"
-        aStation: "Station A"
+        dStation: "Station A"
+        aStation: "Station B"
         schedule:
-            - "18:00"
-            - "19:00"
+            - "10:00"
+            - "11:00"
             - "20:00"
             - "21:00"
     b_a :
@@ -17,7 +17,25 @@ connections:
         dStation: "Station B"
         aStation: "Station A"
         schedule:
+            - "12:00"
+            - "13:00"
+            - "22:00"
+            - "23:00"
+    a_c :
+        length: 25
+        dStation: "Station A"
+        aStation: "Station C"
+        schedule:
+            - "15:00"
+            - "16:00"
+            - "17:00"
             - "18:00"
-            - "19:00"
+    c_a :
+        length: 25
+        dStation: "Station C"
+        aStation: "Station A"
+        schedule:
             - "20:00"
             - "21:00"
+            - "22:00"
+            - "23:00"

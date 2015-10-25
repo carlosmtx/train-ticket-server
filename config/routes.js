@@ -40,7 +40,7 @@ module.exports.routes = {
 
   'POST /inspector/login' : 'Inspector.login', // email, password
 
-  'POST /ticket/purchase' : 'TicketController.purchase', // start, end, token
+  'POST /ticket/purchase' : 'TicketController.purchase', // departure, arrival, token
   'POST /ticket/validate' : 'TicketController.validate', // token, id (do ticket)
   //'GET  /ticket/:id'    : 'TicketController.info', // token
 
