@@ -23,17 +23,20 @@ module.exports = {
       required: true
     },
 
-    // Validated or not
-    validated : {
-      type: 'boolean',
-    },
-
     price: {
       type: 'float'
     },
 
     departureTime: {
-      type: 'datetime'
+      type: 'string'
+    },
+
+    departureDate: {
+      type: 'string'
+    },
+
+    validated : {
+      type: 'boolean'
     }
   }
 };
