@@ -26,7 +26,7 @@ module.exports = {
         ticket.publicKey = sails.services.key.getKeyPair().public;
         var encryptData = ticket.departure + ticket.arrival + ticket.user;
         console.log(encryptData);
-        ticket.signature = sails.services.key.getSign(encryptData).data;
+        ticket.signature = sails.services.key.getSign(encryptData);
         console.log(ticket.signature);
         return res.ok(ticket);
       })
