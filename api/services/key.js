@@ -1,4 +1,3 @@
-var crypto = require('crypto');
 var NodeRSA = require('node-rsa');
 
 module.exports = function(){

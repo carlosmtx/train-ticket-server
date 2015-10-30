@@ -27,11 +27,13 @@ module.exports = {
         var encryptData = {
           departure : ticket.departure,
           arrival: ticket.arrival,
-          user: ticket.user,
+          user: ticket.user || "default",
           departureTime: ticket.departureTime,
           departureDate: ticket.departureDate
         };
+        console.log(encryptData);
         ticket.signature = sails.services.key.getSign(encryptData).data;
+        console.log(ticket.signature);
         return res.ok(ticket);
       })
       .catch(function(err){
