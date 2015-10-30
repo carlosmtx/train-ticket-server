@@ -78,7 +78,16 @@ module.exports = {
           active: function(cb){
             Ticket.find({ user: req.user.id, validated: false})
               .then(function(tickets){
-                cb(null,tickets);
+                async.each(tickets,
+                function(ticket,asyncCB){
+                  ticket.publicKey = sails.services.key.getKeyPair().public;
+                  var encryptData = ticket.departure + ticket.arrival + ticket.user;
+                  ticket.signature = sails.services.key.getSign(encryptData);
+                  asyncCB(null,ticket);
+                },
+                function(err){
+                  cb(null,tickets);
+                });
               })
               .catch(function(err){
                 cb(err,null);
