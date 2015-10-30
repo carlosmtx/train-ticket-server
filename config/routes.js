@@ -46,6 +46,8 @@ module.exports.routes = {
 
   'GET  /railway'     : 'RailwayController.index',
 
+  'GET /teste' : 'TicketController.teste',
+
   'GET /hello'    : function(req,res){ return res.json({'guess what': 'it works'})}
 
   /***************************************************************************

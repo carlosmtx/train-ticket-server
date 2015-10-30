@@ -23,6 +23,15 @@ module.exports = {
       }
     )
       .then(function(ticket){
+        ticket.publicKey = sails.services.key.getKeyPair().public;
+        var encryptData = {
+          departure : ticket.departure,
+          arrival: ticket.arrival,
+          user: ticket.user,
+          departureTime: ticket.departureTime,
+          departureDate: ticket.departureDate
+        };
+        ticket.signature = sails.services.key.getSign(encryptData).data;
         return res.ok(ticket);
       })
       .catch(function(err){
@@ -57,5 +66,10 @@ module.exports = {
       .catch(function(err){
         return res.serverError(err);
       })
+  },
+
+  teste: function(req,res){
+    var data = sails.services.key.getSign("lol");
+    return res.json({data: data});
   }
 };

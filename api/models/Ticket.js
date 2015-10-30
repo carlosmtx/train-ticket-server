@@ -37,7 +37,16 @@ module.exports = {
 
     validated : {
       type: 'boolean'
+    },
+
+    publicKey: {
+      type: 'string'
+    },
+
+    signature: {
+      type: 'string'
     }
+
   }
 };
 
