@@ -14,7 +14,7 @@ module.exports = {
             ticket.sign = sails.services.key.getSign(encryptData)
             return ticket;
           });
-          res.json(tickets);
+          res.json(result);
         })
   },
 
