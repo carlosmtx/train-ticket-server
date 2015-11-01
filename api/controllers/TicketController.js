@@ -9,6 +9,11 @@ module.exports = {
     Ticket
         .find()
         .then(function(tickets){
+          var result = _.map(tickets,function(ticket){
+            var encryptData = ticket.departure + ticket.arrival + ticket.user;
+            ticket.sign = sails.services.key.getSign(encryptData)
+            return ticket;
+          });
           res.json(tickets);
         })
   },
