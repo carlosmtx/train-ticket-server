@@ -10,8 +10,8 @@ module.exports = {
         .find()
         .then(function(tickets){
           var result = _.map(tickets,function(ticket){
-            var encryptData = ticket.departure + ticket.arrival + ticket.user;
-            ticket.signature = sails.services.key.getSign(encryptData)
+            //var encryptData = ticket.departure + ticket.arrival + ticket.user;
+            //ticket.signature = sails.services.key.getSign(encryptData)
             return ticket;
           });
           res.json(result);
@@ -20,6 +20,11 @@ module.exports = {
 
 
   purchase: function(req,res){
+    // Verify inputs
+    if(!req.body.departure)     return res.badRequest("No departure station was passed as parameter.");
+    else if(!req.body.arrival)  return res.badRequest("No arrival station was passed as parameter.");
+    else if(!req.body.departureTime)  return res.badRequest("No departure time was passed as parameter.");
+
     // Get  Price of the requested trip
     var price = sails.services.railway.getTripPrice(req.body.departure, req.body.arrival);
     if(price == -1) return res.serverError("Connection doesn't exist.");
@@ -31,13 +36,11 @@ module.exports = {
           arrival: req.body.arrival,
           user: req.user.id,
           price: price,
-          departureTime: req.body.time,
-          departureDate: req.body.date,
+          departureTime: new Date(parseInt(req.body.departureTime)),
           validated: false
         }
     )
         .then(function(ticket){
-          ticket.publicKey = sails.services.key.getKeyPair().public;
           var encryptData = ticket.departure + ticket.arrival + ticket.user;
           ticket.signature = sails.services.key.getSign(encryptData);
           return res.ok(ticket);

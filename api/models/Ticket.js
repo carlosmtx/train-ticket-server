@@ -28,11 +28,7 @@ module.exports = {
     },
 
     departureTime: {
-      type: 'string'
-    },
-
-    departureDate: {
-      type: 'string'
+      type: 'datetime'
     },
 
     validated : {
