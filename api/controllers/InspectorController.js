@@ -21,5 +21,23 @@ module.exports = {
       .catch(function(err){
         return res.badRequest(err);
       })
+  },
+
+  tickets: function(req,res){
+    if(!req.body.departure) return res.badRequest("Missing departure parameter");
+    else if (!req.body.arrival) return res.badRequest("Missing arrival parameter");
+    else if (!req.body.departureTime) return res.badRequest("Missing departureTime parameter");
+
+    sails.models.ticket.find({
+      departure: req.body.departure,
+      arrival: req.body.arrival,
+      departureTime: new Date(parseInt(req.body.departureTime))
+    })
+      .then(function(tickets){
+        return res.ok(tickets);
+      })
+      .catch(function(err){
+        return res.error(err);
+      })
   }
 };
