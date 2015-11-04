@@ -39,9 +39,9 @@ module.exports.routes = {
   'POST /usr/tickets' : 'UserController.tickets', // token
 
   'POST /inspector/login' : 'Inspector.login', // email, password
-  'POST /inspector/ticket' : 'Inspector.tickets', // departure, arrival,departureTime, token
+  'POST /inspector/trip' : 'Inspector.tickets', // departure, arrival, departureTime, token
 
-  'POST /ticket/purchase' : 'TicketController.purchase', // departure, arrival, token
+  'POST /ticket/purchase' : 'TicketController.purchase', // departure, arrival, departureTime, token
   'POST /ticket/validate' : 'TicketController.validate', // token, id (do ticket)
   //'GET  /ticket/:id'    : 'TicketController.info', // token
 
