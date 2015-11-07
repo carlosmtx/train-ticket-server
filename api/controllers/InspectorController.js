@@ -34,7 +34,10 @@ module.exports = {
       departureTime: new Date(parseInt(req.body.departureTime))
     })
       .then(function(tickets){
-        return res.ok(tickets);
+        return res.ok({
+          size: tickets.length,
+          tickets: tickets
+        });
       })
       .catch(function(err){
         return res.error(err);
