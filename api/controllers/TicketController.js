@@ -82,7 +82,7 @@ module.exports = {
       },
       function(err){
         if(err) return res.badRequest(err);
-        else return res.ok({success:true, description:"Tickets validated with success.");
+        else return res.ok({success:true, description:"Tickets validated with success."});
       })
 
   },
