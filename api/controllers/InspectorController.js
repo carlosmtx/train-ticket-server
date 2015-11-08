@@ -16,6 +16,7 @@ module.exports = {
         return sails.models.inspector.update({id : inspector.id},inspector);
       })
       .then(function(inspector){
+        inspector[0].publicKey = sails.services.key.getKeyPair().public;
         return res.ok(inspector[0]);
       })
       .catch(function(err){
