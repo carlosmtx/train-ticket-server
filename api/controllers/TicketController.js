@@ -10,7 +10,7 @@ module.exports = {
         .find()
         .then(function(tickets){
           var result = _.map(tickets,function(ticket){
-            var encryptData = ticket.id + ticket.departure + ticket.arrival + ticket.id + ticket.departureTime ;
+            var encryptData = ticket.id + ticket.departure + ticket.arrival + ticket.departureTime ;
             ticket.signature = sails.services.key.getSign(encryptData);
             return ticket;
           });
