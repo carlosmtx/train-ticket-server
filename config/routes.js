@@ -42,7 +42,7 @@ module.exports.routes = {
   'POST /inspector/trip' : 'Inspector.tickets', // departure, arrival, departureTime, token
 
   'POST /ticket/purchase' : 'TicketController.purchase', // departure, arrival, departureTime, token
-  'POST /ticket/validate' : 'TicketController.validate', // token, id (do ticket)
+  'POST /ticket/validate' : 'TicketController.validate', // tickets (array)
   //'GET  /ticket/:id'    : 'TicketController.info', // token
 
   'GET  /railway'     : 'RailwayController.index',
