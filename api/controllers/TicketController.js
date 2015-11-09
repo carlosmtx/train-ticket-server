@@ -88,7 +88,7 @@ module.exports = {
   },
 
   teste: function(req,res){
-    var data = sails.services.key.getSign("lool");
+    var data = sails.services.key.getSign("lool");return res.json(data);
     return res.json(sails.services.key.getKeyPair());
   }
 };
