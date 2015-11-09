@@ -10,7 +10,7 @@ module.exports = {
       .find()
       .then(function(tickets){
         var result = _.map(tickets,function(ticket){
-          var encryptData =  ticket.id  + ticket.departure + ticket.arrival + ticket.departureTime ;
+          var encryptData =  ticket.id.toString() + ticket.departure.toString() + ticket.arrival.toString() + ticket.departureTime.toString() ;
           ticket.signature = sails.services.key.getSign(encryptData);
           return ticket;
         });
@@ -89,6 +89,6 @@ module.exports = {
 
   teste: function(req,res){
     var data = sails.services.key.getSign("lool");
-    return res.json(data);
+    return res.json(sails.services.key.getKeyPair());
   }
 };
