@@ -18,7 +18,7 @@ module.exports = function(){
     KeyManager.prototype.getSign = function(data){
         var key = this._generateKey();
 
-        shasum = crypto.createHash('sha1');
+        shasum = crypto.createHash('SHA1withRSA');
         shasum.update(data);
 
         var hash = shasum.digest('base64');
