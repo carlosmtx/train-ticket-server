@@ -76,11 +76,11 @@ module.exports = {
     tickets: function(req,res){
       async.parallel({
           active: function(cb){
-            Ticket.find({ user: req.user.id, validated: false}).sort("departureTime ASC")
+            Ticket.find({ user: req.user.id, validated: false}).sort("departureTime DES")
               .then(function(tickets){
                 async.each(tickets,
                 function(ticket,asyncCB){
-                  var encryptData = ticket.departure + ticket.arrival + ticket.user;
+                    var encryptData =  ticket.id.toString() + ticket.departure.toString() + ticket.arrival.toString() + new Date(ticket.departureTime).getTime();
                   ticket.signature = sails.services.key.getSign(encryptData);
                   asyncCB(null,ticket);
                 },
