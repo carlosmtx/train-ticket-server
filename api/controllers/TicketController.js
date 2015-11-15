@@ -10,7 +10,7 @@ module.exports = {
       .find()
       .then(function(tickets){
         var result = _.map(tickets,function(ticket){
-          var encryptData =  ticket.id.toString() + ticket.departure.toString() + ticket.arrival.toString() + ticket.departureTime.toString() ;
+          var encryptData =  ticket.id.toString() + ticket.departure.toString() + ticket.arrival.toString() + ticket.departureTime.getTime();
           ticket.signature = encryptData;
           return ticket;
         });
