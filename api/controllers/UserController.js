@@ -76,7 +76,7 @@ module.exports = {
     tickets: function(req,res){
       async.parallel({
           active: function(cb){
-            Ticket.find({ user: req.user.id, validated: false}).sort("departureTime DES")
+            Ticket.find({ user: req.user.id, validated: false}).sort("departureTime DESC")
               .then(function(tickets){
                 async.each(tickets,
                 function(ticket,asyncCB){
