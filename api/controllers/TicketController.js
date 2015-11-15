@@ -11,7 +11,7 @@ module.exports = {
       .then(function(tickets){
         var result = _.map(tickets,function(ticket){
           var encryptData =  ticket.id.toString() + ticket.departure.toString() + ticket.arrival.toString() + ticket.departureTime.toString() ;
-          ticket.signature = sails.services.key.getSign(encryptData);
+          ticket.signature = encryptData;
           return ticket;
         });
         res.json(result);
