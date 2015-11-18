@@ -1,41 +1,66 @@
 stations:
-    - "Station A"
-    - "Station B"
-    - "Station C"
+    - "Braga"
+    - "Porto"
+    - "Coimbra"
+    - "Lisboa"
 connections:
-    a_b :
-        length: 10
-        dStation: "Station A"
-        aStation: "Station B"
+    braga_porto :
+        length: 50
+        dStation: "Braga"
+        aStation: "Porto"
         schedule:
             - "10:00"
             - "11:00"
-            - "20:00"
-            - "21:00"
-    b_a :
-        length: 10
-        dStation: "Station B"
-        aStation: "Station A"
+            - "12:00"
+            - "13:00"
+            - "14:00"
+            - "15:00"
+            - "16:00"
+    porto_braga :
+        length: 50
+        dStation: "Porto"
+        aStation: "Braga"
+        schedule:
+            - "10:00"
+            - "11:00"
+            - "12:00"
+            - "13:00"
+    porto_coimbra :
+        length: 130
+        dStation: "Porto"
+        aStation: "Coimbra"
         schedule:
             - "12:00"
             - "13:00"
-            - "22:00"
-            - "23:00"
-    a_c :
-        length: 25
-        dStation: "Station A"
-        aStation: "Station C"
-        schedule:
+            - "14:00"
             - "15:00"
             - "16:00"
             - "17:00"
-            - "18:00"
-    c_a :
-        length: 25
-        dStation: "Station C"
-        aStation: "Station A"
+            - "19:00"
+    coimbra_porto :
+        length: 279
+        dStation: "Coimbra"
+        aStation: "Porto"
         schedule:
             - "20:00"
             - "21:00"
             - "22:00"
             - "23:00"
+    coimbra_lisboa:
+        length: 279
+        dStation: "Coimbra"
+        aStation: "Lisboa"
+        schedule:
+            - "20:30"
+            - "21:30"
+            - "22:30"
+            - "23:30"
+    lisboa_coimbra:
+        length: 279
+        dStation: "Lisboa"
+        aStation: "Coimbra"
+        schedule:
+            - "20:30"
+            - "21:30"
+            - "22:30"
+            - "23:30"
